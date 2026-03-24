@@ -41,7 +41,7 @@ const Step3 = ({ application, applicationId, updateApplication }) => {
   // Handle save button click
   const handleSave = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/save-contact-details", {
+      const response = await fetch("http://localhost:3000/api/save-contact-details", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

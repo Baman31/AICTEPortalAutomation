@@ -23,7 +23,7 @@ const Login = () => {
         // Simulate a 2-second delay before making the API request
         setTimeout(async () => {
             try {
-                const response = await axios.post('http://localhost:5000/api/admin/login', { email, password });
+                const response = await axios.post('http://localhost:3000/api/admin/login', { email, password });
                 const { id, username, name, committee } = response.data;
 
                 localStorage.setItem('adminId', id);

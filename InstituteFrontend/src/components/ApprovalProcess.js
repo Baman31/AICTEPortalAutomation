@@ -24,7 +24,7 @@ const ApprovalProcess = () => {
     // Fetch application data by ID
     const fetchApplication = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/application/${applicationId}`);
+        const response = await fetch(`http://localhost:3000/api/application/${applicationId}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -88,7 +88,7 @@ const ApprovalProcess = () => {
       const requestBody = { applicationId };
   
       // Make the fetch call to the backend
-      const response = await fetch("http://localhost:5000/api/submit-application", {
+      const response = await fetch("http://localhost:3000/api/submit-application", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

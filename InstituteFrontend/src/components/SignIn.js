@@ -19,7 +19,7 @@ const SignIn = () => {
     setError(''); 
   
     try {
-      const response = await fetch('http://localhost:5000/authenticate', {
+      const response = await fetch('http://localhost:3000/authenticate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

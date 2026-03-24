@@ -7,11 +7,8 @@ import ApplicationDetail from './screens/ApplicationDetail';
 import ExpertVisit from './screens/ExpertVisit';
 import Executive from './screens/Executive';
 import SuperAdminDashboard from './screens/SuperAdminDashboard';
-<<<<<<< HEAD
 import Footer from "./screens/Footer";
 import ApplicationReport from './screens/ApplicationReport';
-=======
->>>>>>> main
 
 function App() {
     return (
@@ -24,10 +21,7 @@ function App() {
                 <Route path="/evc/:applicationId" element={<ExpertVisit />} />
                 <Route path="/executive/:applicationId" element={<Executive />} />
                 <Route path="/superAdmin" element={<SuperAdminDashboard />} />
-<<<<<<< HEAD
                 <Route path="/superAdmin/:applicationId" element={<ApplicationReport />} />
-=======
->>>>>>> main
             </Routes>
         </Router>
         <Footer/>

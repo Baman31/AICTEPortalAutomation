@@ -14,7 +14,7 @@ const ApplicationReport = () => {
   useEffect(() => {
     const fetchApplicationReport = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/applications/${applicationId}/details`);
+        const response = await axios.get(`http://localhost:3000/api/applications/${applicationId}/details`);
         setApplicationData(response.data);
         setLoading(false);
       } catch (err) {

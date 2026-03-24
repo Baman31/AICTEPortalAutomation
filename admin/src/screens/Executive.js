@@ -1,45 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-<<<<<<< HEAD
 import styles from './Executive.module.css'; 
 import Navbar from './Navbar'; 
 
 const Executive = () => {
   const [application, setApplication] = useState(null);
   const [selectedStage, setSelectedStage] = useState('document_verification'); 
-=======
-import styles from './Executive.module.css'; // Import the CSS Module
-
-const Executive = () => {
-  const [application, setApplication] = useState(null);
-  const [selectedStage, setSelectedStage] = useState('document_verification'); // Default to 'document_verification'
->>>>>>> main
   const { applicationId } = useParams();
 
   useEffect(() => {
     const fetchApplication = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/track-application/${applicationId}`);
+        const response = await axios.get(`http://localhost:3000/api/track-application/${applicationId}`);
         const data = response.data;
 
-<<<<<<< HEAD
         console.log('API Response:', data);
 
         const filteredData = {
           application_id: data.logs_id?.application_id || 'Unknown Application ID',
           status: data.logs_id?.status || 'Unknown Status',
           stage: data.logs_id?.stage || {}, 
-=======
-        // Log the response for verification
-        console.log('API Response:', data);
-
-        // Extract application_id, status, and stage
-        const filteredData = {
-          application_id: data.logs_id?.application_id || 'Unknown Application ID',
-          status: data.logs_id?.status || 'Unknown Status',
-          stage: data.logs_id?.stage || {}, // Include stage if needed
->>>>>>> main
           status_logs: data.status_logs || [],
         };
 
@@ -57,7 +38,6 @@ const Executive = () => {
     return <div>Loading...</div>;
   }
 
-<<<<<<< HEAD
   let statusColor;
   switch (application.status) {
     case 'In Progress':
@@ -75,7 +55,6 @@ const Executive = () => {
   }
 
   const renderNestedTable = (nestedObj) => {
-    // Define the custom labels here
     const labels = {
       is_completed: 'Completed by Scrutiny',
       success: 'Success', 
@@ -91,7 +70,7 @@ const Executive = () => {
         case 'is_allocated':
           return value ? 'Yes' : 'No'; 
         case 'verification_timestamp':
-          return new Date(value).toLocaleString(); // Format the date and time
+          return new Date(value).toLocaleString();
         default:
           return value;
       }
@@ -103,19 +82,17 @@ const Executive = () => {
           {Object.keys(nestedObj).map((key) => {
             const value = formatValue(key, nestedObj[key]);
 
-            // Determine the container style based on the value
             let containerStyle = {};
             if (typeof value === 'string' && (value.toLowerCase() === 'yes' || value.toLowerCase() === 'no')) {
               containerStyle.backgroundColor = value.toLowerCase() === 'yes' ? 'green' : 'red';
               containerStyle.color = 'white';
-              containerStyle.padding = '3px 7px';   // Reduced padding
-              containerStyle.borderRadius = '4px';  // Smaller border radius
+              containerStyle.padding = '3px 7px';
+              containerStyle.borderRadius = '4px';
               containerStyle.display = 'inline-block'; 
               containerStyle.textAlign = 'center'
               containerStyle.borderRadius = '15px'
             }
 
-            // Style for the key cell (remains the same)
             const keyCellStyle = {
               color: 'gray',
             };
@@ -131,45 +108,11 @@ const Executive = () => {
               </tr>
             );
           })}
-=======
-  // Determine the status color
-  let statusColor;
-  switch (application.status) {
-    case 'In Progress':
-      statusColor = 'orange'; // For "In Progress"
-      break;
-    case 'Verified':
-      statusColor = 'green'; // For "Verified"
-      break;
-    case 'Pending':
-      statusColor = 'red'; // For "Pending"
-      break;
-    default:
-      statusColor = 'gray'; // Default color for unknown status
-      break;
-  }
-
-  // Render nested tables for each stage
-  const renderNestedTable = (nestedObj) => {
-    return (
-      <table className={styles.stageTable}>
-        <tbody>
-          {Object.keys(nestedObj).map((key) => (
-            <tr key={key}>
-              <td className={styles.keyCell}>{key}</td>
-              <td className={styles.valueCell}>{JSON.stringify(nestedObj[key])}</td>
-            </tr>
-          ))}
->>>>>>> main
         </tbody>
       </table>
     );
   };
 
-<<<<<<< HEAD
-=======
-  // Conditional rendering for different stage tables
->>>>>>> main
   const renderStageContent = () => {
     const stageData = application.stage[selectedStage];
 
@@ -179,18 +122,13 @@ const Executive = () => {
 
     return (
       <>
-<<<<<<< HEAD
         <h3 className={styles.detailsHeader}>{selectedStage.replace('_', ' ').toUpperCase()} Details</h3>
-=======
-        <h3>{selectedStage.replace('_', ' ').toUpperCase()} Details</h3>
->>>>>>> main
         {renderNestedTable(stageData)}
       </>
     );
   };
 
   return (
-<<<<<<< HEAD
     <div>
       <Navbar name="Executive" activeKey={applicationId} />
 
@@ -209,31 +147,9 @@ const Executive = () => {
           <h2>Application Details</h2>
           {renderStageContent()}
         </div>
-=======
-    <div className={styles.container}>
-      {/* Sidebar */}
-      <div className={styles.sidebar}>
-        <h2>Application Status</h2>
-        <p>Status: <span className={styles.status} style={{ color: statusColor }}>{application.status}</span></p>
-        <div className={styles.options}>
-          <button onClick={() => setSelectedStage('document_verification')} className={styles.optionButton}>Document Verification</button>
-          <button onClick={() => setSelectedStage('expert_visit_stage')} className={styles.optionButton}>Expert Visit</button>
-          <button onClick={() => setSelectedStage('final_stage')} className={styles.optionButton}>Final Stage</button>
-        </div>
-      </div>
-
-      {/* Main Content Area */}
-      <div className={styles.mainContent}>
-        <h2>Application Details</h2>
-        {renderStageContent()}
->>>>>>> main
       </div>
     </div>
   );
 };
 
-<<<<<<< HEAD
 export default Executive;
-=======
-export default Executive;
->>>>>>> main

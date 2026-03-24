@@ -22,7 +22,7 @@ const MyApplications = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/institute-applications', {
+        const response = await axios.get('http://localhost:3000/api/institute-applications', {
           params: {
             institute_id: userData.instituteId,
             is_complete: true,

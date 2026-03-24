@@ -36,7 +36,7 @@ export default function ApplicationStatus() {
     const fetchApplication = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/track-application/${applicationId}`
+          `http://localhost:3000/api/track-application/${applicationId}`
         );
         const data = response.data.logs_id;
 

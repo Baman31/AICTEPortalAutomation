@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './HomeLink.module.css';
 import { FaFileAlt, FaEdit, FaCheckCircle, FaCalendarAlt } from 'react-icons/fa';
-import loaderGif from '../assets/loader.gif'; // Replace this with a modern loader
+import loaderGif from '../assets/loader.gif';
 import Navbar from './Navbar';
-import leftIcon from "../assets/aicte_logo.png"; // Replace with your left icon image path
+import leftIcon from "../assets/aicte_logo.png";
 
 const HomeLink = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const HomeLink = () => {
         throw new Error('Institute ID not found in local storage.');
       }
 
-      const response = await fetch('http://localhost:5000/api/create-application', {
+      const response = await fetch('http://localhost:3000/api/create-application', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,19 +45,9 @@ const HomeLink = () => {
     }
   };
 
-<<<<<<<< HEAD:InstituteFrontend/src/components/HomeLink.js
   const handleExistingApplication = () => navigate('/existing-application');
   const handleMyApplication = () => navigate('/my-application');
 
-========
-  const handleExistingApplication=()=>{
-    navigate(`/existing-application`)
-  }
-
-  const handleMyApplication=()=>{
-    navigate(`/my-application`)
-  }
->>>>>>>> main:Institute Frontend/src/components/HomeLink.js
   return (
     <div className={styles.homeLinkContainer}>
       <img src={leftIcon} alt="" width={500} height={100} />
@@ -78,32 +68,14 @@ const HomeLink = () => {
               Start a fresh application for approval.
             </p>
           </div>
-<<<<<<<< HEAD:InstituteFrontend/src/components/HomeLink.js
           <div className={styles.card} onClick={handleExistingApplication}>
-========
-
-          {/* Card: Existing Application */}
-          <div
-            className={styles.card}
-            onClick={handleExistingApplication}
-          >
->>>>>>>> main:Institute Frontend/src/components/HomeLink.js
             <FaEdit className={styles.icon} />
             <h2 className={styles.cardTitle}>Existing Application</h2>
             <p className={styles.cardDescription}>
               View and edit your ongoing application.
             </p>
           </div>
-<<<<<<<< HEAD:InstituteFrontend/src/components/HomeLink.js
           <div className={styles.card} onClick={handleMyApplication}>
-========
-
-          {/* Card: My Application */}
-          <div
-            className={styles.card}
-            onClick={handleMyApplication}
-          >
->>>>>>>> main:Institute Frontend/src/components/HomeLink.js
             <FaCheckCircle className={styles.icon} />
             <h2 className={styles.cardTitle}>My Application</h2>
             <p className={styles.cardDescription}>
@@ -116,11 +88,7 @@ const HomeLink = () => {
             <p className={styles.cardDescription}>
               Apply for an extension of your existing application.
             </p>
-<<<<<<<< HEAD:InstituteFrontend/src/components/HomeLink.js
           </div> */}
-========
-          </div>
->>>>>>>> main:Institute Frontend/src/components/HomeLink.js
         </div>
       )}
     </div>

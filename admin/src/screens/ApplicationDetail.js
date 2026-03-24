@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Modal from "../components/Modal";
-<<<<<<< HEAD
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,11 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ApplicationDetail.module.css";
 import Navbar from "./Navbar";
-=======
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faPhone, faMapMarkerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
-import styles from './ApplicationDetail.module.css'; 
->>>>>>> main
 
 const ApplicationDetail = () => {
   const { applicationId } = useParams();
@@ -27,7 +21,7 @@ const ApplicationDetail = () => {
     const fetchApplicationDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/application/${applicationId}`
+          `http://localhost:3000/api/application/${applicationId}`
         );
         setApplication(response.data);
       } catch (err) {
@@ -46,13 +40,9 @@ const ApplicationDetail = () => {
 
   const handleAction = (action, objectId, actionType) => {
     setId(objectId);
-<<<<<<< HEAD
     setModalMessage(
       `Are you sure you want to ${action.toLowerCase()} this ${actionType} request?`
     );
-=======
-    setModalMessage(`Are you sure you want to ${action.toLowerCase()} this ${actionType} request?`);
->>>>>>> main
     setAction(action);
     setActionType(actionType);
     setIsModalOpen(true);
@@ -66,7 +56,7 @@ const ApplicationDetail = () => {
         try {
           const payload = { remark, action, applicationId, id };
           const response = await axios.post(
-            "http://localhost:5000/api/verify-document",
+            "http://localhost:3000/api/verify-document",
             payload
           );
           alert(response.data.message || "Operation successful!");
@@ -84,7 +74,7 @@ const ApplicationDetail = () => {
         try {
           const payload = { remark, action, applicationId };
           const response = await axios.post(
-            "http://localhost:5000/api/verify-scrutiny",
+            "http://localhost:3000/api/verify-scrutiny",
             payload
           );
           alert(response.data.message || "Operation successful!");
@@ -112,7 +102,6 @@ const ApplicationDetail = () => {
 
   const { applicationDetails, uploads } = application;
 
-<<<<<<< HEAD
   // Helper function to recursively render fields with motion
   const renderFields = (data) => {
     if (typeof data === "object" && data !== null) {
@@ -131,44 +120,12 @@ const ApplicationDetail = () => {
             <span className={styles.nestedValue}>{value}</span>
           )}
         </motion.div>
-=======
-  const renderContactInputs = (contactDetails) => {
-    return Object.keys(contactDetails).map((key) => (
-      <div className={styles.inputGroup} key={key}>
-        <label htmlFor={key} className={styles.label}>
-          {key.charAt(0).toUpperCase() + key.slice(1)}
-        </label>
-        <input
-          type="text"
-          id={key}
-          name={key}
-          defaultValue={contactDetails[key]}
-          className={styles.inputField}
-        />
-      </div>
-    ));
-  };
-
-  // Helper function to recursively render fields
-  const renderFields = (data) => {
-    if (typeof data === 'object' && data !== null) {
-      return Object.entries(data).map(([key, value]) => (
-        <div key={key} className={styles.nestedField}>
-          <label className={styles.nestedLabel}>{key}:</label>
-          {typeof value === 'object' && value !== null ? (
-            <div className={styles.nestedFields}>{renderFields(value)}</div> 
-          ) : (
-            <span className={styles.nestedValue}>{value}</span>
-          )}
-        </div>
->>>>>>> main
       ));
     } else {
       return <span className={styles.nestedValue}>{data}</span>;
     }
   };
 
-<<<<<<< HEAD
   const fieldValidationLabels = {
     document_type: "Document Type",
     certificate_number: "Certificate Number",
@@ -302,7 +259,6 @@ const ApplicationDetail = () => {
                     <strong>Document Result:</strong>
                   </p>
                   <div className={styles.docResultContainer}>
-                    {/* Extract and style combined_result -> ocr_extraction */}
                     {upload.docResult.combined_result?.ocr_extraction && (
                       <div className={styles.ocrExtraction}>
                         <p className={styles.ocrExtractionLabel}> Details :</p>
@@ -312,7 +268,6 @@ const ApplicationDetail = () => {
                           ).map(([subKey, subValue]) =>
                             subKey === "validity" &&
                             typeof subValue === "object" ? (
-                              // Handle validity field separately
                               <div
                                 key={subKey}
                                 className={styles.validityField}
@@ -339,7 +294,6 @@ const ApplicationDetail = () => {
                                 </div>
                               </div>
                             ) : (
-                              // Render other fields normally
                               <div key={subKey} className={styles.ocrField}>
                                 <span className={styles.ocrFieldKey}>
                                   {subKey}:
@@ -354,7 +308,6 @@ const ApplicationDetail = () => {
                       </div>
                     )}
 
-                    {/* Extract and style validation_notes */}
                     {upload.docResult.validation_result?.validation_notes && (
                       <div className={styles.validationNotes}>
                         <p className={styles.validationNotesLabel}>
@@ -371,7 +324,6 @@ const ApplicationDetail = () => {
                       </div>
                     )}
 
-                    {/* Extract and style field_validations with is_valid */}
                     {upload.docResult.validation_result?.field_validations && (
                       <div className={styles.fieldValidations}>
                         <h5>Field Validations:</h5>
@@ -384,7 +336,6 @@ const ApplicationDetail = () => {
                           >
                             <p className={styles.validationFieldLabel}>
                               {fieldValidationLabels[fieldKey] || fieldKey}:{" "}
-                              {/* Use the label or the original key if not found */}
                             </p>
                             <div
                               className={styles.validationFieldValue}
@@ -404,7 +355,6 @@ const ApplicationDetail = () => {
                       </div>
                     )}
 
-                    {/* Rendering Potential Issues */}
                     {upload.docResult?.validation_result?.potential_issues && (
                       <div className={styles.potentialIssues}>
                         <h5>Potential Issues:</h5>
@@ -476,68 +426,6 @@ const ApplicationDetail = () => {
           action={action}
         />
       </motion.div>
-=======
-  return (
-    <div className={styles.container}>
-      <div className={styles.detailsBox}>
-        <h1 className={styles.title}>Application Details</h1>
-        <div className={styles.section}>
-          <h2>Type: <span>{applicationDetails.type}</span></h2>
-          <h3>Institute Name: <span>{applicationDetails.instituteName}</span></h3>
-        </div>
-
-        <div className={styles.section}>
-          <h4>Contact Details</h4>
-          <div className={styles.contactDetails}>
-            <p><FontAwesomeIcon icon={faUser} /> {applicationDetails.contactDetails.firstName} {applicationDetails.contactDetails.lastName}</p>
-            <p><FontAwesomeIcon icon={faPhone} /> {applicationDetails.contactDetails.mobileNumber}</p>
-            <p><FontAwesomeIcon icon={faMapMarkerAlt} /> {applicationDetails.contactDetails.address}, {applicationDetails.contactDetails.city}, {applicationDetails.contactDetails.state} - {applicationDetails.contactDetails.postalCode}</p>
-            <p><FontAwesomeIcon icon={faEnvelope} /> {applicationDetails.contactDetails.emailAddress}</p>
-          </div>
-        </div>
-
-        <div className={styles.section}>
-          <h4>Uploads</h4>
-          <div className={styles.uploads}>
-            {uploads.map((upload, index) => (
-              <div key={index} className={styles.uploadCard}>
-                <p>Filename: {upload.filename}</p>
-                <a href={upload.url} target="_blank" rel="noopener noreferrer">View Document</a>
-                <p>DocResult:</p>
-                <div className={styles.docResultContainer}>
-                  {Object.entries(upload.docResult).map(([key, value]) => (
-                    <div key={key} className={styles.nestedObject}>
-                      <p className={styles.docResultLabel}>{key}:</p>
-                      <div className={styles.nestedFields}>
-                        {renderFields(value)} 
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p>Verified: {upload.is_verified ? "Yes" : "No"}</p>
-                <p>Remark: {upload.remark}</p>
-                {!upload.is_verified ? (
-                  <>
-                    <button className={styles.approveButton} onClick={() => handleAction("Approve", upload._id, "document")}>Verify</button>
-                    <button className={styles.rejectButton} onClick={() => handleAction("Reject", upload._id, "document")}>Reject</button>
-                  </>
-                ) : (
-                  <h6>Verified</h6>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleModalResponse}
-        message={modalMessage}
-        action={action}
-      />
->>>>>>> main
     </div>
   );
 };

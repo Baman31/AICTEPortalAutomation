@@ -62,7 +62,7 @@ const Step7 = ({ application, applicationId, updateApplication }) => {
       formData.append('applicationId', applicationId);
       formData.append('docName', selectedOption.key);
 
-      const response = await axios.post('http://localhost:5000/validate-document', formData, {
+      const response = await axios.post('http://localhost:3000/validate-document', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

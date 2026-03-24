@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Application = require('../models/applications'); // Adjust the path as needed
-const Logs = require('../models/logs'); // Adjust the path as neededconst Logs = require('./models/logs'); // Adjust the path as needed
+const Logs = require('../models/logs'); // Adjust the path as needed
 const Admin = require('../models/admin'); // Adjust the path as needed
 
 
@@ -9,11 +9,8 @@ const Admin = require('../models/admin'); // Adjust the path as needed
 // API 1: Get applications by institute_id and is_complete
 router.get('/institute-applications', async (req, res) => {
     const { institute_id, is_complete } = req.query;
-<<<<<<< HEAD
 
     console.log("get application request",is_complete)
-=======
->>>>>>> main
   
     if (!institute_id === undefined) {
       return res.status(400).send('Parameters institute_id and is_complete are required.');
